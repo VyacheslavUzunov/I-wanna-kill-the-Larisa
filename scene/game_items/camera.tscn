@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4nw0qpusd8x"]
+
+[ext_resource type="Script" path="res://scene/scripts/camera.gd" id="1_0gki1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok2h7"]
+size = Vector2(474, 300)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0gki1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 160)
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(0, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(240, -160)
+shape = SubResource("RectangleShape2D_ok2h7")
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

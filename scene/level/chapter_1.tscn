@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvlp3ul35x8r5"]
+
+[ext_resource type="Script" path="res://scene/scripts/chapter_1.gd" id="1_2wigo"]
+[ext_resource type="PackedScene" uid="uid://d4bpjdrjooi42" path="res://scene/game_items/larisa(player).tscn" id="2_p8ap5"]
+[ext_resource type="Texture2D" uid="uid://bb4mboin1nax2" path="res://sprite/bg/chapter1 changed.png" id="3_ec1kf"]
+[ext_resource type="PackedScene" uid="uid://cdlqb35ekn07i" path="res://scene/tiles/spikes.tscn" id="4_s8ehs"]
+[ext_resource type="Texture2D" uid="uid://5ndpses5dhw2" path="res://sprite/tilemap/bigtesto.png" id="5_5o7d2"]
+[ext_resource type="PackedScene" uid="uid://bpg61xppa3bmh" path="res://scene/tiles/minispikes.tscn" id="6_fgee3"]
+[ext_resource type="PackedScene" uid="uid://bx4nw0qpusd8x" path="res://scene/game_items/camera.tscn" id="7_og5yk"]
+[ext_resource type="PackedScene" uid="uid://874wtt8kwnl3" path="res://scene/tiles/checkpoints.tscn" id="8_pxjjd"]
+[ext_resource type="Texture2D" uid="uid://dbrnsb5wpixy4" path="res://sprite/tilemap/coin.png" id="9_kfi3w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss34a"]
+texture = ExtResource("5_5o7d2")
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0fbj2"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ss34a")
+
+[node name="Chapter 1" type="Node2D"]
+script = ExtResource("1_2wigo")
+
+[node name="Larisa(player)" parent="." instance=ExtResource("2_p8ap5")]
+position = Vector2(446, 183)
+
+[node name="Chap1Start" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(240, 160)
+texture = ExtResource("3_ec1kf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(337, 258, 335, 258, 335, 250, 411, 250, 411, 209, 475, 209, 475, 0, 480, 0, 480, 320, 0, 320, 0, 0, 8, 0, 8, 272, 146, 272, 146, 294, 188, 294, 188, 310, 337, 310)
+
+[node name="Spikes" parent="StaticBody2D" instance=ExtResource("4_s8ehs")]
+position = Vector2(296, 302)
+
+[node name="start" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 480.0
+offset_bottom = 320.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_0fbj2")
+format = 2
+layer_0/tile_data = PackedInt32Array(655382, 0, 0, 655381, 0, 0, 655380, 0, 0, 655383, 0, 0, 393239, 0, 0, 393238, 0, 0, 393237, 0, 0, 393236, 0, 0, 393240, 0, 0, 1179668, 0, 0, 917522, 0, 0, 196626, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, -65512, 0, 0, -65513, 0, 0, -65514, 0, 0, -65515, 0, 0)
+
+[node name="Spikes" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(345, 242)
+
+[node name="Spikes2" parent="." instance=ExtResource("6_fgee3")]
+position = Vector2(376, 246)
+
+[node name="Spikes3" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(403, 220)
+rotation = -1.60239
+
+[node name="Spikes5" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(344, 184)
+rotation = -3.12814
+
+[node name="Spikes6" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(392, 168)
+rotation = 1.59647
+
+[node name="Spikes4" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(419, 201)
+
+[node name="Spikes7" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(360, 152)
+
+[node name="Spikes9" parent="." instance=ExtResource("6_fgee3")]
+position = Vector2(396, 116)
+rotation = 3.05349
+
+[node name="Spikes8" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(296, 216)
+
+[node name="Spikes10" parent="." instance=ExtResource("4_s8ehs")]
+position = Vector2(296, 248)
+rotation = -3.12721
+
+[node name="Spikes11" parent="." instance=ExtResource("6_fgee3")]
+position = Vector2(333, 284)
+
+[node name="Node2D" parent="." instance=ExtResource("7_og5yk")]
+
+[node name="Node2D2" parent="." instance=ExtResource("7_og5yk")]
+position = Vector2(0, -320)
+
+[node name="Checkpoints2" parent="." instance=ExtResource("8_pxjjd")]
+position = Vector2(238, 295)
+
+[node name="Checkpoints3" parent="." instance=ExtResource("8_pxjjd")]
+position = Vector2(321, 278)
+
+[node name="Checkpoints5" parent="." instance=ExtResource("8_pxjjd")]
+position = Vector2(335, 146)
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(275, 272)
+texture = ExtResource("9_kfi3w")
+
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

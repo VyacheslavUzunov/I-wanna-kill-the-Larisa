@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://1p3j652xtm8u"]
+
+[ext_resource type="Texture2D" uid="uid://5ndpses5dhw2" path="res://sprite/tilemap/bigtesto.png" id="1_ppisl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m41v2"]
+texture = ExtResource("1_ppisl")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tpyw6"]
+sources/0 = SubResource("TileSetAtlasSource_m41v2")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_tpyw6")
+format = 2

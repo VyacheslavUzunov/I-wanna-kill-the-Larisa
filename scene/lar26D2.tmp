@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://d4bpjdrjooi42"]
+
+[ext_resource type="Texture2D" uid="uid://2v480l1u40n5" path="res://sprite/Larisa/char_a_pthrthmn_v01.png" id="1_14hex"]
+[ext_resource type="Script" path="res://scene/larisa(player).gd" id="1_itgke"]
+[ext_resource type="Texture2D" uid="uid://bnobt60pp4vwi" path="res://sprite/Larisa/char_a_pthrthmn_v02.png" id="3_ait8e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ou46"]
+atlas = ExtResource("1_14hex")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqh0t"]
+atlas = ExtResource("1_14hex")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqmxg"]
+atlas = ExtResource("1_14hex")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evphj"]
+atlas = ExtResource("1_14hex")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scbqp"]
+atlas = ExtResource("1_14hex")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjawe"]
+atlas = ExtResource("1_14hex")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu11c"]
+atlas = ExtResource("3_ait8e")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8y78"]
+atlas = ExtResource("3_ait8e")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q52yt"]
+atlas = ExtResource("3_ait8e")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tomuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ou46")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqh0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqmxg")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evphj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scbqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjawe")
+}],
+"loop": true,
+"name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu11c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8y78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q52yt")
+}],
+"loop": false,
+"name": &"run_right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf6mx"]
+size = Vector2(16, 21)
+
+[sub_resource type="Curve" id="Curve_oxcml"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.164835), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Larisa(player)" type="CharacterBody2D"]
+script = ExtResource("1_itgke")
+
+[node name="AnimatedSpriteLarisa" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tomuf")
+animation = &"run_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rf6mx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+one_shot = true
+speed_scale = 5.52
+explosiveness = 0.66
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_oxcml")
+color = Color(1, 0, 0, 1)
+
+[node name="deathmatch" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="deathmatch" to="." method="_on_deathmatch_timeout"]
